@@ -33,13 +33,13 @@ class MainActivity : AppCompatActivity() {
             } else {
                 val apiInterface = APIClient().getClient()?.create(APIInterface::class.java)
                 if (apiInterface != null) {
-                    val name = etName.text.toString()
-                    apiInterface.addNames(Names.Name(name))
+                    val text = etName.text.toString()
+                    apiInterface.addNames(Names.Name(text))
                         //apiInterface.addNames(etName.text.toString())
-                        .enqueue(object : Callback<List<Names.Name>> {
+                        .enqueue(object : Callback<Names.Name> {
                             override fun onResponse(
-                                call: Call<List<Names.Name>>,
-                                response: Response<List<Names.Name>>
+                                call: Call<Names.Name>,
+                                response: Response<Names.Name>
                             ) {
                                 Toast.makeText(
                                     this@MainActivity,
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                                 etName.text.clear()
                             }
 
-                            override fun onFailure(call: Call<List<Names.Name>>, t: Throwable) {
+                            override fun onFailure(call: Call<Names.Name>, t: Throwable) {
                                 Toast.makeText(
                                     this@MainActivity,
                                     "failed to add",

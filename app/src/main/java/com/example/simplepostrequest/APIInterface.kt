@@ -14,5 +14,5 @@ interface APIInterface {
     @Headers("Content-Type: application/json")
     @POST("/custom-people/")
    // fun addNames(@Body name: String): Call<List<Names.Name>>
-    fun addNames(@Body name: Names.Name): Call<List<Names.Name>>
+    fun addNames(@Body name: Names.Name): Call<Names.Name>
 }
