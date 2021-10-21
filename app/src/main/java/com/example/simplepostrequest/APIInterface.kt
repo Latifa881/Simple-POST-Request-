@@ -9,10 +9,10 @@ import retrofit2.http.POST
 interface APIInterface {
     @Headers("Content-Type: application/json")
     @GET("/custom-people/")
-    fun getNames(): Call<ArrayList<Names.Name>>
+    fun getNames(): Call<NamesX>
 
     @Headers("Content-Type: application/json")
     @POST("/custom-people/")
    // fun addNames(@Body name: String): Call<List<Names.Name>>
-    fun addNames(@Body name: Names.Name): Call<Names.Name>
+    fun addNames(@Body name: NamesItem): Call<NamesItem>
 }

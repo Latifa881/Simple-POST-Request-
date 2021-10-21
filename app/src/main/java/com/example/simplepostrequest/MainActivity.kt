@@ -34,12 +34,12 @@ class MainActivity : AppCompatActivity() {
                 val apiInterface = APIClient().getClient()?.create(APIInterface::class.java)
                 if (apiInterface != null) {
                     val text = etName.text.toString()
-                    apiInterface.addNames(Names.Name(text))
+                    apiInterface.addNames(NamesItem(text,0))
                         //apiInterface.addNames(etName.text.toString())
-                        .enqueue(object : Callback<Names.Name> {
+                        .enqueue(object : Callback<NamesItem> {
                             override fun onResponse(
-                                call: Call<Names.Name>,
-                                response: Response<Names.Name>
+                                call: Call<NamesItem>,
+                                response: Response<NamesItem>
                             ) {
                                 Toast.makeText(
                                     this@MainActivity,
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                                 etName.text.clear()
                             }
 
-                            override fun onFailure(call: Call<Names.Name>, t: Throwable) {
+                            override fun onFailure(call: Call<NamesItem>, t: Throwable) {
                                 Toast.makeText(
                                     this@MainActivity,
                                     "failed to add",
@@ -73,10 +73,10 @@ class MainActivity : AppCompatActivity() {
         var text = ""
         if (apiInterface != null) {
 
-            apiInterface.getNames().enqueue(object : Callback<ArrayList<Names.Name>> {
+            apiInterface.getNames().enqueue(object : Callback<NamesX> {
                 override fun onResponse(
-                    call: Call<ArrayList<Names.Name>>,
-                    response: Response<ArrayList<Names.Name>>
+                    call: Call<NamesX>,
+                    response: Response<NamesX>
                 ) {
 
                     Log.d("TAG", response.code().toString() + "")
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
 
                 }
 
-                override fun onFailure(call: Call<ArrayList<Names.Name>>, t: Throwable) {
+                override fun onFailure(call: Call<NamesX>, t: Throwable) {
                     call.cancel()
                 }
             })
